@@ -2,6 +2,8 @@
 
 End-to-end analytics engineering project built with dbt Core and Snowflake, using the Stack Overflow 2025 Developer Survey dataset (~49,000 responses). The goal is to transform raw survey data into a clean, tested, and documented dimensional model ready for BI consumption.
 
+This project enables analysis of developer compensation by country and experience level, AI tool adoption trends across different developer profiles, and technology stack preferences — providing a structured foundation for dashboards or ad-hoc analysis on one of the largest annual developer surveys in the world.
+
 ---
 
 ## Stack
@@ -22,10 +24,10 @@ STAGING (dbt views)
 └── stg_survey_responses        ← column renaming, type casting, source declaration
 
 MARTS (dbt tables)
-├── dim_respondent              ← demographic and professional profile
-├── dim_tech_stack              ← languages, databases and platforms used
-├── dim_ai_usage                ← AI tool adoption and sentiment
-└── fct_survey_responses        ← quantitative metrics (compensation, experience, satisfaction)
+├── dim_respondent              ← demographic and professional profile (age, country, education, employment, industry)
+├── dim_tech_stack              ← languages, databases and platforms used by each respondent
+├── dim_ai_usage                ← AI tool adoption frequency, sentiment, trust level and perceived job threat
+└── fct_survey_responses        ← quantitative metrics: compensation (USD), coding experience, job satisfaction
 ```
 
 ---
@@ -58,13 +60,61 @@ dbt_stackoverflow/
 
 ---
 
+## Example Queries
+
+**Average yearly compensation by country (top 10):**
+
+```sql
+SELECT
+    r.country,
+    ROUND(AVG(f.converted_comp_yearly), 0) AS avg_comp_usd,
+    COUNT(*) AS respondents
+FROM fct_survey_responses f
+JOIN dim_respondent r ON f.response_id = r.response_id
+WHERE f.converted_comp_yearly IS NOT NULL
+GROUP BY r.country
+ORDER BY avg_comp_usd DESC
+LIMIT 10;
+```
+
+**AI tool adoption rate by developer type:**
+
+```sql
+SELECT
+    r.dev_type,
+    ai.ai_select,
+    COUNT(*) AS respondents
+FROM fct_survey_responses f
+JOIN dim_respondent r ON f.response_id = r.response_id
+JOIN dim_ai_usage ai ON f.response_id = ai.response_id
+WHERE r.dev_type IS NOT NULL
+GROUP BY r.dev_type, ai.ai_select
+ORDER BY r.dev_type, respondents DESC;
+```
+
+**Median compensation by years of coding experience:**
+
+```sql
+SELECT
+    years_code,
+    MEDIAN(converted_comp_yearly) AS median_comp_usd,
+    COUNT(*) AS respondents
+FROM fct_survey_responses
+WHERE converted_comp_yearly IS NOT NULL
+  AND years_code IS NOT NULL
+GROUP BY years_code
+ORDER BY years_code;
+```
+
+---
+
 ## Setup
 
 ### 1. Clone the repository
 
 ```bash
 git clone https://github.com/adrianffigueroa/stackoverflowsurvey2025.git
-cd dbt-stackoverflow
+cd stackoverflowsurvey2025
 ```
 
 ### 2. Create virtual environment and install dependencies
