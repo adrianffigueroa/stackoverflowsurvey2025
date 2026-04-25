@@ -1,0 +1,1 @@
+select response_id, converted_comp_yearly, work_exp, years_code, job_sat from {{ref('stg_survey_responses')}}

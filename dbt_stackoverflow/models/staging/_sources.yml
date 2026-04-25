@@ -1,0 +1,90 @@
+sources:
+  - name: STACKOVERFLOW
+    database: DBT_STACKOVERFLOW
+    schema: RAW
+    tables:
+      - name: SURVEY_RESULTS_PUBLIC
+
+models:
+  - name: stg_survey_responses
+    description: 'Staging model para las respuestas de la encuesta Stack Overflow 2025'
+    columns:
+      - name: response_id
+        description: 'Identificador único de cada respuesta'
+        tests:
+          - unique
+          - not_null
+
+      - name: main_branch
+        description: 'Rol principal del encuestado'
+        tests:
+          - not_null
+
+      - name: age
+        description: 'Edad del encuestado'
+
+      - name: ed_level
+        description: 'Nivel educativo del encuestado'
+
+      - name: country
+        description: 'País de residencia del encuestado'
+
+      - name: employment
+        description: 'Situación laboral del encuestado'
+
+      - name: dev_type
+        description: 'Tipo de desarrollador'
+
+      - name: work_exp
+        description: 'Años de experiencia laboral'
+
+      - name: years_code
+        description: 'Años de experiencia programando'
+
+      - name: org_size
+        description: 'Tamaño de la organización donde trabaja el encuestado'
+
+      - name: remote_work
+        description: 'Frecuencia de trabajo remoto'
+
+      - name: icorpm
+        description: 'Rol individual contribuyente o gerente de proyecto'
+
+      - name: industry
+        description: 'Industria en la que trabaja el encuestado'
+
+      - name: currency
+        description: 'Moneda en la que se reporta la compensación'
+
+      - name: comp_total
+        description: 'Compensación total reportada por el encuestado'
+
+      - name: converted_comp_yearly
+        description: 'Compensación anual convertida a USD'
+
+      - name: job_sat
+        description: 'Satisfacción laboral'
+
+      - name: language_have_worked_with
+        description: 'Lenguajes de programación con los que ha trabajado el encuestado'
+
+      - name: database_have_worked_with
+        description: 'Bases de datos con las que ha trabajado el encuestado'
+
+      - name: platform_have_worked_with
+        description: 'Plataformas con las que ha trabajado el encuestado'
+
+      - name: ai_select
+        description: 'Frecuencia de uso de herramientas de IA'
+
+      - name: ai_sent
+        description: 'Posición del encuestado sobre el impacto de la IA en su trabajo'
+
+      - name: ai_acc
+        description: 'Nivel de confianza que el encuestado tiene en las herramientas de IA'
+
+      - name: ai_threat
+        description: 'Percepción del encuestado sobre la amenaza de la IA para su empleo'
+
+      - name: ai_agents
+        description: 'Frecuencia de uso de agentes de IA'

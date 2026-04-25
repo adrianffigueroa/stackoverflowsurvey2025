@@ -1,0 +1,99 @@
+models:
+  - name: dim_respondent
+    description: 'Dimensión con información demográfica y laboral de los encuestados'
+    columns:
+      - name: response_id
+        description: 'Identificador único de cada respuesta'
+        tests:
+          - unique
+          - not_null
+
+      - name: age
+        description: 'Edad del encuestado'
+
+      - name: ed_level
+        description: 'Nivel educativo del encuestado'
+
+      - name: country
+        description: 'País de residencia del encuestado'
+
+      - name: main_branch
+        description: 'Rol principal del encuestado'
+
+      - name: employment
+        description: 'Situación laboral del encuestado'
+
+      - name: dev_type
+        description: 'Tipo de desarrollador'
+
+      - name: org_size
+        description: 'Tamaño de la organización donde trabaja el encuestado'
+
+      - name: remote_work
+        description: 'Frecuencia de trabajo remoto'
+
+      - name: industry
+        description: 'Industria en la que trabaja el encuestado'
+
+  - name: dim_tech_stack
+    description: 'Dimensión con información sobre las tecnologías utilizadas por los encuestados'
+    columns:
+      - name: response_id
+        description: 'Identificador único de cada respuesta'
+        tests:
+          - unique
+          - not_null
+
+      - name: language_have_worked_with
+        description: 'Lenguajes de programación con los que ha trabajado el encuestado'
+
+      - name: database_have_worked_with
+        description: 'Bases de datos con las que ha trabajado el encuestado'
+
+      - name: platform_have_worked_with
+        description: 'Plataformas con las que ha trabajado el encuestado'
+
+  - name: dim_ai_usage
+    description: 'Dimensión con información sobre el uso de IA por parte de los encuestados'
+    columns:
+      - name: response_id
+        description: 'Identificador único de cada respuesta'
+        tests:
+          - unique
+          - not_null
+
+      - name: ai_select
+        description: 'Frecuencia de uso de herramientas de IA'
+
+      - name: ai_sent
+        description: 'Posición del encuestado sobre el impacto de la IA en su trabajo'
+
+      - name: ai_acc
+        description: 'Nivel de confianza que el encuestado tiene en las herramientas de IA'
+
+      - name: ai_threat
+        description: 'Percepción del encuestado sobre la amenaza de la IA para su empleo'
+
+      - name: ai_agents
+        description: 'Frecuencia de uso de agentes de IA'
+
+  - name: fct_survey_responses
+    description: 'Tabla de hechos con métricas clave de las respuestas a la encuesta'
+    columns:
+      - name: response_id
+        description: 'Identificador único de cada respuesta'
+        tests:
+          - unique
+          - not_null
+
+      - name: converted_comp_yearly
+        description: 'Compensación anual convertida a USD'
+
+      - name: work_exp
+        description: 'Años de experiencia laboral'
+
+      - name: years_code
+        description: 'Años de experiencia programando'
+
+      - name: job_sat
+        description: 'Satisfacción laboral'
