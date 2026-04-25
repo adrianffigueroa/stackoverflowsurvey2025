@@ -32,7 +32,7 @@ MARTS (dbt tables)
 
 ## Lineage
 
-![dbt lineage graph](docs/lineage.png)
+![dbt lineage graph](dbt_stackoverflow/docs/lineage.png)
 
 ---
 
@@ -63,7 +63,7 @@ dbt_stackoverflow/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/tu-usuario/dbt-stackoverflow.git
+git clone https://github.com/adrianffigueroa/dbt-stackoverflow.git
 cd dbt-stackoverflow
 ```
 
@@ -131,4 +131,4 @@ dbt docs serve     # serve docs locally
 
 ## Dataset
 
-[Stack Overflow Developer Survey 2025](https://www.kaggle.com/datasets/stackoverflow/stack-overflow-2025-developer-survey) — ~49,000 responses, 172 columns covering developer demographics, technology adoption, compensation, and AI tool usage.
+[Stack Overflow Developer Survey 2025](https://www.kaggle.com/datasets/aliaslam25/stack-overflow-developer-survey-2025) — ~49,000 responses, 172 columns covering developer demographics, technology adoption, compensation, and AI tool usage.
