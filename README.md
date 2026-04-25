@@ -63,7 +63,7 @@ dbt_stackoverflow/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/adrianffigueroa/dbt-stackoverflow.git
+git clone https://github.com/adrianffigueroa/stackoverflowsurvey2025.git
 cd dbt-stackoverflow
 ```
 
